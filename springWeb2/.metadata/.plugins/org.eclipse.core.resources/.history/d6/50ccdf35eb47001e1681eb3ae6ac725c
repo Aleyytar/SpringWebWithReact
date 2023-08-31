@@ -1,0 +1,55 @@
+package com.example.springWeb2.business.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.springWeb2.business.abstarctt.UserService;
+import com.example.springWeb2.business.request.CreateUserRequest;
+import com.example.springWeb2.business.response.GetAllUserResponse;
+import com.example.springWeb2.dataaccess.abstractt.UserRepository;
+import com.example.springWeb2.entities.concretes.User;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Service
+@Data
+@AllArgsConstructor
+public class UserManager implements UserService {
+	
+	private UserRepository userRepository;
+	
+
+	@Override
+	public List<GetAllUserResponse> getAll() {
+		List<User> users = userRepository.findAll();
+		List<GetAllUserResponse> getAllUserResponses = new ArrayList<GetAllUserResponse>();
+		
+		for (User user : users) {
+			GetAllUserResponse responseItem = new GetAllUserResponse();
+			responseItem.setUserName(user.getUserName());
+			responseItem.setPassword(user.getPassword());
+			getAllUserResponses.add(responseItem);
+			
+		}
+		
+
+		return getAllUserResponses;
+	}
+
+
+	@Override
+	public void add(CreateUserRequest createUserRequest) {
+		User user = new User();
+		user.setUserName(createUserRequest.getUserName());
+		user.setPassword(createUserRequest.getPassword());
+		
+		this.userRepository.save(user);
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.example.springWeb2.business.request;
+
+public class CreateUserRequest {
+
+}

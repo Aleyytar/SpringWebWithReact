@@ -1,0 +1,5 @@
+package com.example.springWeb2.business.abstarctt;
+
+public interface UserService {
+
+}

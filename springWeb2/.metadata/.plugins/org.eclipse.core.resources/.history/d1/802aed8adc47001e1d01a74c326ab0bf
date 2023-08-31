@@ -1,0 +1,8 @@
+package com.example.springWeb2.business.request;
+
+public class CreateUserRequest {
+	
+	private String userName;
+	private String password;
+
+}

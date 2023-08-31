@@ -1,0 +1,36 @@
+package com.example.springWeb2.api.controllers;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.springWeb2.business.abstarctt.UserService;
+import com.example.springWeb2.business.request.CreateUserRequest;
+import com.example.springWeb2.business.response.GetAllUserResponse;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@RestController
+@RequestMapping("/api/users")
+@Data
+@AllArgsConstructor
+public class UsersController {
+	
+	private UserService userService;
+	
+	@GetMapping("/getall")
+	public List<GetAllUserResponse> getAll(){
+		return userService.getAll();
+	}
+	
+	@PostMapping("/add")
+	public void add(CreateUserRequest createUserRequest) {
+		this.userService.add(createUserRequest);
+	}
+	
+
+}
